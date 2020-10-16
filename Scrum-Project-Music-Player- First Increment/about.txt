@@ -2,3 +2,5 @@ These files are for the front-end or the design of the music player project. The
 These are a part of the first sprint and will be merged with the backend. 
 
 Note: if the application does not play videos, please make sure you have the proper video codexes installed in your PC
+Please Install the K-Lite Codecs from the following link:
+https://clay-atlas.com/us/blog/2020/10/14/pyqt5-en-qmediaplayer-directshowplayerservice/
