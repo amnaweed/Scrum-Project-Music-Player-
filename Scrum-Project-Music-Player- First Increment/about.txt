@@ -1,2 +1,4 @@
 These files are for the front-end or the design of the music player project. Therefore it does not have any functionalities.
 These are a part of the first sprint and will be merged with the backend. 
+
+Note: if the application does not play videos, please make sure you have the proper video codexes installed in your PC
