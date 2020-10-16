@@ -1,0 +1,31 @@
+<RCC>
+  <qresource prefix="imgs">
+    <file>cyan icons/pause.svg</file>
+    <file>13312.jpg</file>
+    <file>photo-1529963183134-61a90db47eaf.jpg</file>
+    <file>photo-1517928260182-5688aead3066.jpg</file>
+    <file>photo-1516450360452-9312f5e86fc7.jpg</file>
+    <file>photo-1508951598074-bcc78111198c.jpg</file>
+    <file>sky-828648_1280.jpg</file>
+    <file>music-player-2951399_1280.jpg</file>
+    <file>cyan icons/playlist.svg</file>
+    <file>cyan icons/play.svg</file>
+    <file>undraw_audio_player_yty9.svg</file>
+    <file>white Icons/video.svg</file>
+  </qresource>
+  <qresource prefix="buttons">
+    <file>white Icons/mute-hover.svg</file>
+    <file>cyan icons/previous.svg</file>
+    <file>white Icons/mute.svg</file>
+    <file>white Icons/mute1.svg</file>
+    <file>white Icons/volume-down.svg</file>
+    <file>white Icons/volume-medium.svg</file>
+    <file>white Icons/volume-up.svg</file>
+    <file>cyan icons/next (1).svg</file>
+    <file>cyan icons/repeat (1).svg</file>
+    <file>cyan icons/volume-down.svg</file>
+    <file>white Icons/previous (1).svg</file>
+    <file>white Icons/repeat.svg</file>
+    <file>white Icons/next.svg</file>
+  </qresource>
+</RCC>
