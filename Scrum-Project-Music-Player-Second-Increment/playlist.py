@@ -49,6 +49,7 @@ class Ui_playlistWindow(QMainWindow, Ui_MainWindow):
 
 
 
+
     def dragEnterEvent(self, e):
         if e.mimeData().hasUrls():
             e.acceptProposedAction()
@@ -70,15 +71,39 @@ class Ui_playlistWindow(QMainWindow, Ui_MainWindow):
     def open_file(self):
         path, _ = QFileDialog.getOpenFileName(self, "Open file", "",
                                               "mp3 Audio (*.mp3);mp4 Video (*.mp4);Movie files (*.mov);All files (*.*)")
-
         if path:
             self.playlist.addMedia(
                 QMediaContent(
                     QUrl.fromLocalFile(path)
                 )
             )
-
         self.model.layoutChanged.emit()
+
+    def playlist_selection_changed(self, ix):
+        # We receive a QItemSelection from selectionChanged.
+        i = ix.indexes()[0].row()
+        self.playlist.setCurrentIndex(i)
+
+    def playlist_position_changed(self, i):
+        if i > -1:
+            ix = self.model.index(i)
+            self.listView.setCurrentIndex(ix)
+
+    def searchButton(self):
+        entry = self.searchText.text()
+        model = self.listView.model()
+
+        for index in range(self.playlist.mediaCount()):
+            item = self.playlist.media(index).canonicalUrl().fileName()
+            if entry in item.lower():
+                self.playlist.clear()
+                # self.model.beginResetModel()
+                self.playlist.addMedia(
+                    QMediaContent(
+                        QUrl.fromLocalFile(item)
+                    )
+                )
+                self.model.layoutChanged.emit()
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -131,21 +156,13 @@ class Ui_playlistWindow(QMainWindow, Ui_MainWindow):
 "    border-color: 2px solid rgb(75, 255, 225);\n"
 "}\n"
 "")
-        # self.player = QMediaPlayer()
-        #
-        # # self.player.error.connect(self.erroralert)
-        # self.player.play()
-        #
-        # # Setup the playlist.
-        # self.playlist = QMediaPlaylist()
-        # self.player.setPlaylist(self.playlist)
 
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.search = QtWidgets.QPushButton(self.frame)
         self.search.setGeometry(QtCore.QRect(480, 70, 91, 61))
-        self.search.setText("")
+        self.search.setText("Search")
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/buttons/cyan icons/loupe.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.search.setIcon(icon1)
@@ -175,49 +192,21 @@ class Ui_playlistWindow(QMainWindow, Ui_MainWindow):
         MainWindow.setCentralWidget(self.centralwidget)
 
         ############ Open File Action ##################
+        self.search.clicked.connect(self.searchButton)
+        ################################################
+
+        ############ Open File Action ##################
         self.Open.clicked.connect(self.open_file)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        # self.setAcceptDrops(True)
-        # Setup the playlist.
-        # self.playlist = QMediaPlaylist()
-        # self.player.setPlaylist(self.playlist)
 
         self.model = PlaylistModel(self.playlist)
         self.listView.setModel(self.model)
 
-
-    # def dragEnterEvent(self, e):
-    #     if e.mimeData().hasUrls():
-    #         e.acceptProposedAction()
-    #
-    # def dropEvent(self, e):
-    #     for url in e.mimeData().urls():
-    #         self.playlist.addMedia(
-    #             QMediaContent(url)
-    #         )
-    #
-    #     self.model.layoutChanged.emit()
-    #
-    #     # If not playing, seeking to first of newly added + play.
-    #     if self.player.state() != QMediaPlayer.PlayingState:
-    #         i = self.playlist.mediaCount() - len(e.mimeData().urls())
-    #         self.playlist.setCurrentIndex(i)
-    #         self.player.play()
-    #
-    # def open_file(self):
-    #     path, _ = QFileDialog.getOpenFileName(self, "Open file", "", "mp3 Audio (*.mp3);mp4 Video (*.mp4);Movie files (*.mov);All files (*.*)")
-    #
-    #     if path:
-    #         self.playlist.addMedia(
-    #             QMediaContent(
-    #                 QUrl.fromLocalFile(path)
-    #             )
-    #         )
-    #
-    #     self.model.layoutChanged.emit()
-
+        self.playlist.currentIndexChanged.connect(self.playlist_position_changed)
+        selection_model = self.listView.selectionModel()
+        selection_model.selectionChanged.connect(self.playlist_selection_changed)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
