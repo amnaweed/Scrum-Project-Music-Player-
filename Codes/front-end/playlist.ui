@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>559</width>
+    <height>769</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="sources/sources.qrc">
+    <normaloff>:/imgs/white Icons/video.svg</normaloff>:/imgs/white Icons/video.svg</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>-20</x>
+      <y>-40</y>
+      <width>611</width>
+      <height>811</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#frame{
+background-color:rgb(0, 13, 20);
+}
+QPushButton{
+background: transparent;
+text-align: center;
+font: 75 15pt &quot;Comic Sans MS&quot;;
+color:  rgb(58, 180, 204);
+border-radius: 30px;
+}
+QPushButton:hover{
+	color: rgb(26, 84, 94);
+}
+
+QLineEdit{
+border: 0px;
+	background: transparent;
+	text-align: center;
+	border: 2px solid rgb(30, 244, 255);
+	width: 200px;
+	outline: none;
+	color: white;
+	border-radius: 24px;
+}
+QLineEdit:focus{
+width: 280px;
+	border-color: 2px solid rgb(75, 255, 225);
+}
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="search">
+     <property name="geometry">
+      <rect>
+       <x>480</x>
+       <y>70</y>
+       <width>91</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="sources/sources.qrc">
+       <normaloff>:/buttons/cyan icons/loupe.svg</normaloff>:/buttons/cyan icons/loupe.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>70</width>
+       <height>70</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Open">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>70</y>
+       <width>171</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Open</string>
+     </property>
+     <property name="icon">
+      <iconset resource="sources/sources.qrc">
+       <normaloff>:/buttons/cyan icons/folder.svg</normaloff>:/buttons/cyan icons/folder.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>60</width>
+       <height>60</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="searchText">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>80</y>
+       <width>251</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>15</pointsize>
+      </font>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="sources/sources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
