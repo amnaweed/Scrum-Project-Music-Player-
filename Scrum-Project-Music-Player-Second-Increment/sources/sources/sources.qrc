@@ -13,6 +13,9 @@
     <file>undraw_audio_player_yty9.svg</file>
     <file>white Icons/video.svg</file>
   </qresource>
+  <qresource prefix="newPrefix">
+    <file>11925.jpg</file>
+  </qresource>
   <qresource prefix="buttons">
     <file>cyan icons/previous.svg</file>
     <file>cyan icons/next (1).svg</file>
