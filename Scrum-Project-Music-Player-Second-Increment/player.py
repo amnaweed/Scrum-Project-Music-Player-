@@ -39,7 +39,9 @@ class Ui_MainWindow(QWidget):
             self.play.setIcon(self.pauseIcon)
             self.mediaPlayer.play()
         elif not(self.playlist.isEmpty()):
+            self.mediaPlayer.setPlaylist(self.playlist)
             self.mediaPlayer.play()
+            self.play.setIcon(self.pauseIcon)
         else:
             media, _ = QFileDialog.getOpenFileName(self, "Open Video")
 
@@ -50,8 +52,8 @@ class Ui_MainWindow(QWidget):
                         QUrl.fromLocalFile(media)
                     )
                 )
-                # self.mediaPlayer.play()
-                # self.play.setIcon(self.pauseIcon)
+                self.mediaPlayer.play()
+                self.play.setIcon(self.pauseIcon)
 
     def openFile(self):
         media, _ = QFileDialog.getOpenFileName(self, "Open Video")
@@ -107,7 +109,6 @@ class Ui_MainWindow(QWidget):
             self.volume.setIcon(self.volumeMute)
 
     def muteVolume(self):
-        print(self.playlist.isEmpty())
         if self.mediaPlayer.isMuted() == True:
             self.mediaPlayer.setMuted(False)
             self.volumeControl(self.volume_2.value())
@@ -129,6 +130,13 @@ class Ui_MainWindow(QWidget):
         self.ui = Ui_playlistWindow(self.window)
         self.ui.setupUi(self.window)
         self.window.show()
+        self.playlist = Ui_playlistWindow.playlist
+
+    def playlistPrev(self):
+        self.playlist.previous()
+
+    def playlistNext(self):
+        self.playlist.next()
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -362,6 +370,13 @@ class Ui_MainWindow(QWidget):
         self.play.clicked.connect(self.browseFile)
         ##################################################
 
+        ################### Prev Next Buttons ############
+        self.prev.pressed.connect(self.playlistPrev)
+        self.next.pressed.connect(self.playlistNext)
+        ##################################################
+
+
+
         ################### Repeat Button ################
         self.repeat.clicked.connect(self.loopMedia)
         ##################################################
@@ -411,7 +426,7 @@ class Ui_MainWindow(QWidget):
         self.actionOpen_File.setText(_translate("MainWindow", "Open File..."))
         self.actionPlaylist.setText(_translate("MainWindow", "Playlist"))
         self.actionQuit.setText(_translate("MainWindow", "Quit"))
-import sources1
+import sources
 
 
 if __name__ == "__main__":
